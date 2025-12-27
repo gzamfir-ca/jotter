@@ -15,7 +15,7 @@ module Jotter
 
   self.@root: Pathname
 
-  def self.new: (String note) -> int
+  def self.new: (String note, String root) -> int
 
   def self.setup: -> untyped
 

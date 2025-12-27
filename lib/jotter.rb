@@ -15,9 +15,10 @@ module Jotter
     end
 
     desc "new NOTE", "Creates a new MD note"
+    option :path, type: :string, aliases: "-p", desc: "Path to note location"
 
     def new(note)
-      exit Jotter.new(note)
+      exit Jotter.new(note, options[:path])
     end
 
     desc "version", "Prints version number"
@@ -39,7 +40,8 @@ module Jotter
   end
 
   # Module public methods
-  def self.new(note)
+  def self.new(note, root)
+    @root = Pathname.new(root).expand_path if root
     name = note_name(note)
     path = path_name(name)
     log_message(__method__, "adding new entry to #{path}")
@@ -67,21 +69,21 @@ module Jotter
   end
 
   def self.note_name(note)
-    File.basename(note, ".md").sub(/^\d{8}_/, "").gsub(/[^0-9A-Za-z.-]/, "-")
+    File.basename(note).sub(/_\d{8}(\..+)?$/, "").gsub(/[^0-9A-Za-z.-]/, "-")
   end
 
   def self.path_name(name)
-    path = @root.join("#{Time.now.strftime("%Y%m%d")}_#{name}.md")
+    path = @root.join("#{name.downcase}_#{Time.now.strftime("%Y%m%d")}.md")
     path.tap { |p| p.dirname.mkpath }
   end
 
   def self.section
-    "\n\n## #{Time.now.strftime("%H%M")} "
+    "\n\n## #{Time.now.strftime("%Y%m%d%H%M")} "
   end
 
   def self.title(name)
     formatted_name = name.split("-").map(&:capitalize).join(" ")
-    "# #{Time.now.strftime("%Y%m%d")} #{formatted_name}"
+    "# #{formatted_name}"
   end
 
   def self.update_file?(file, mode, data)
