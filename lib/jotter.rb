@@ -38,14 +38,7 @@ module Jotter
     end
   end
 
-  def self.log_exception(method_name, message, exp)
-    puts "#{name}:#{method_name} #{message} #{exp.message}"
-  end
-
-  def self.log_message(method_name, message)
-    puts "#{name}:#{method_name} #{message}"
-  end
-
+  # Module public methods
   def self.new(note)
     name = note_name(note)
     path = path_name(name)
@@ -53,6 +46,24 @@ module Jotter
     res = (File.exist?(path) || update_file?(path, "w", title(name))) &&
           update_file?(path, "a", section)
     res ? 0 : 1
+  end
+
+  def self.setup
+    @root = Pathname.new("~/Developer/Tests/").expand_path
+  end
+
+  def self.version
+    puts Jotter::VERSION
+    0
+  end
+
+  # Module private methods
+  def self.log_exception(method_name, message, exp)
+    puts "#{name}:#{method_name} #{message} #{exp.message}"
+  end
+
+  def self.log_message(method_name, message)
+    puts "#{name}:#{method_name} #{message}"
   end
 
   def self.note_name(note)
@@ -68,10 +79,6 @@ module Jotter
     "\n\n## #{Time.now.strftime("%H%M")} "
   end
 
-  def self.setup
-    @root = Pathname.new("~/Developer/Tests/").expand_path
-  end
-
   def self.title(name)
     formatted_name = name.split("-").map(&:capitalize).join(" ")
     "# #{Time.now.strftime("%Y%m%d")} #{formatted_name}"
@@ -85,8 +92,5 @@ module Jotter
     false
   end
 
-  def self.version
-    puts Jotter::VERSION
-    0
-  end
+  private_class_method(:log_exception, :log_message, :note_name, :path_name, :section, :title, :update_file?)
 end

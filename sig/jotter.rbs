@@ -15,13 +15,17 @@ module Jotter
 
   self.@root: Pathname
 
-  self.@time: Time
+  def self.new: (String note) -> int
+
+  def self.setup: -> untyped
+
+  def self.version: -> int
+
+  private
 
   def self.log_exception: (Symbol | nil method_name, String message, StandardError exp) -> untyped
 
   def self.log_message: (Symbol | nil method_name, String message) -> untyped
-
-  def self.new: (String note) -> int
 
   def self.note_name: (String note) -> String
 
@@ -29,11 +33,7 @@ module Jotter
 
   def self.section: -> String
 
-  def self.setup: -> untyped
-
   def self.title: (String name) -> String
 
   def self.update_file?: (Pathname file, String mode, String data) -> bool
-
-  def self.version: -> int
 end
