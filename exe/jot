@@ -2,3 +2,6 @@
 # frozen_string_literal: true
 
 require "jotter"
+
+# boot note jotter
+Jotter::CLI.start
