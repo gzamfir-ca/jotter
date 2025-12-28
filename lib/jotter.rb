@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "pathname"
 require "thor"
 require_relative "jotter/version"
 
@@ -51,7 +52,7 @@ module Jotter
   end
 
   def self.setup
-    @root = Pathname.new("~/Developer/Tests/").expand_path
+    @root = Pathname.new("~/Documents/Markdown/note-repository").expand_path
   end
 
   def self.version
