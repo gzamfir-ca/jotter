@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email = ["gzamfir_ca@icloud.com"]
 
   spec.summary = "jot markdown notes"
-  spec.description = "a tool that helps manage markdown notes"
+  spec.description = "a tool that helps create markdown notes"
   spec.homepage = "https://github.com/gzamfir-ca/jotter"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.2.0"
