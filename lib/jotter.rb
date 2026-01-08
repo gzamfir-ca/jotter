@@ -74,7 +74,7 @@ module Jotter
   end
 
   def self.path_name(name)
-    path = @root.join("#{name.downcase}_#{Time.now.strftime("%Y%m%d")}.md")
+    path = @root.join("#{name.downcase(:ascii)}_#{Time.now.strftime("%Y%m%d")}.md")
     path.tap { |p| p.dirname.mkpath }
   end
 
