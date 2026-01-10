@@ -15,7 +15,7 @@ module Jotter
     def self.start: -> untyped
   end
 
-  self.@root: Pathname
+  self.@root: untyped
 
   def self.new: (String note, String root) -> int
 
@@ -31,11 +31,11 @@ module Jotter
 
   def self.note_name: (String note) -> String
 
-  def self.path_name: (String name) -> Pathname
+  def self.path_name: (String name) -> untyped
 
   def self.section: -> String
 
   def self.title: (String name) -> String
 
-  def self.update_file?: (Pathname file, String mode, String data) -> bool
+  def self.update_file?: (untyped file, String mode, String data) -> bool
 end
