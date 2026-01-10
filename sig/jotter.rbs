@@ -1,4 +1,6 @@
 module Jotter
+  BASE_COLOR: String
+  PASS_COLOR: String
   VERSION: String
 
   class CLI

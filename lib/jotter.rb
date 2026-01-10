@@ -6,6 +6,9 @@ require_relative "jotter/version"
 
 # Provides jotter implementation
 module Jotter
+  BASE_COLOR = "\e[0m"
+  PASS_COLOR = "\e[1;32m"
+
   # Provides CLI implementation
   class CLI < Thor
     # Class public methods
@@ -56,7 +59,7 @@ module Jotter
   end
 
   def self.version
-    puts Jotter::VERSION
+    puts "#{PASS_COLOR}version: #{Jotter::VERSION}#{BASE_COLOR}"
     0
   end
 
