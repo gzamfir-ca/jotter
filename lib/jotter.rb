@@ -79,7 +79,7 @@ module Jotter
   end
 
   def self.section
-    "\n\n## #{Time.now.strftime("%Y%m%d%H%M")} "
+    "\n\n## #{Time.now.strftime("%Y%m%d%H%M%S")} "
   end
 
   def self.title(name)
