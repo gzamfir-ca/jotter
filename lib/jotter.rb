@@ -70,21 +70,21 @@ module Jotter
   end
 
   def self.note_name(note)
-    File.basename(note).sub(/_\d{8}(\..+)?$/, "").gsub(/[^0-9A-Za-z.-]/, "-")
+    File.basename(note, ".*").sub(/^\d{8}_/, "").gsub(/[^0-9A-Za-z.-]/, "-")
   end
 
   def self.path_name(name)
-    path = @root.join("#{name.downcase(:ascii)}_#{Time.now.strftime("%Y%m%d")}.md")
+    path = @root.join("#{Time.now.strftime("%Y%m%d")}_#{name.downcase(:ascii)}.md")
     path.tap { |p| p.dirname.mkpath }
   end
 
   def self.section
-    "\n\n## #{Time.now.strftime("%Y%m%d%H%M%S")} "
+    "\nReplace this content\n"
   end
 
   def self.title(name)
     formatted_name = name.split("-").map(&:capitalize).join(" ")
-    "# #{formatted_name}"
+    "# #{Time.now.strftime("%Y%m%d")} #{formatted_name}\n"
   end
 
   def self.update_file?(file, mode, data)
