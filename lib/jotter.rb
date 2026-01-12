@@ -49,8 +49,8 @@ module Jotter
     name = note_name(note)
     path = path_name(name)
     log_message(__method__, "adding new entry to #{path}")
-    res = (File.exist?(path) || update_file?(path, "w", title(name))) &&
-          update_file?(path, "a", section)
+    res = (File.exist?(path) || update_file?(path, "w", title_text(name))) &&
+          update_file?(path, "a", entry_text)
     res ? 0 : 1
   end
 
@@ -81,13 +81,13 @@ module Jotter
     path.tap { |p| p.dirname.mkpath }
   end
 
-  def self.section
-    "\nReplace this content\n"
+  def self.entry_text
+    "\nEntry Content\n"
   end
 
-  def self.title(name)
+  def self.title_text(name)
     formatted_name = name.split("-").map(&:capitalize).join(" ")
-    "# #{Time.now.strftime("%Y%m%d")} #{formatted_name}\n"
+    "# #{Time.now.strftime("%Y%m%d")} #{formatted_name}\n\n #inbox\n"
   end
 
   def self.update_file?(file, mode, data)
@@ -98,5 +98,5 @@ module Jotter
     false
   end
 
-  private_class_method(:log_exception, :log_message, :note_name, :path_name, :section, :title, :update_file?)
+  private_class_method(:log_exception, :log_message, :note_name, :path_name, :entry_text, :title_text, :update_file?)
 end

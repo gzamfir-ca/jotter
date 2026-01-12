@@ -33,9 +33,9 @@ module Jotter
 
   def self.path_name: (String name) -> untyped
 
-  def self.section: -> String
+  def self.entry_text: -> String
 
-  def self.title: (String name) -> String
+  def self.title_text: (String name) -> String
 
   def self.update_file?: (untyped file, String mode, String data) -> bool
 end
