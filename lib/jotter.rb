@@ -25,6 +25,12 @@ module Jotter
       exit Jotter.new(note, options[:path])
     end
 
+    desc "tree", "Tree for all commands"
+
+    def tree
+      build_command_tree(self.class, "")
+    end
+
     desc "version", "Prints version number"
 
     def version

@@ -8,6 +8,8 @@ module Jotter
 
     def new: (String note) -> untyped
 
+    def tree: -> untyped
+
     def version: -> untyped
 
     def self.exit_on_failure?: -> bool
