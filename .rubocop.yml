@@ -1,9 +1,9 @@
 AllCops:
   Exclude:
-    - 'bin/*'
+    - "bin/*"
   NewCops: enable
   SuggestExtensions: false
-  TargetRubyVersion: 3.2
+  TargetRubyVersion: 4.0
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
